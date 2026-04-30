@@ -81,12 +81,18 @@
 .tagContainer {
   display: flex;
   gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .tag {
   font-size: 0.75rem;
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
+}
+
+.tagNextJS {
+  background-color: #dbeafe;
+  color: #1e40af;
 }
 
 .tagReact {
@@ -107,6 +113,30 @@
 .tagML {
   background-color: #fef3c7;
   color: #92400e;
+}
+
+.tagTailwind {
+  background-color: #cffafe;
+  color: #155e75;
+}
+
+.tagVercel {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+.sourceLink {
+  display: block;
+  margin-top: 1rem;
+  color: #2563eb;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.sourceLink:hover {
+  color: #1d4ed8;
 }
 
 .contactSection {

@@ -1,3 +1,5 @@
+import styles from './page.module.css';
+
 export default function Home() {
   // Access environment variables
   const email = process.env.NEXT_PUBLIC_EMAIL;
@@ -5,72 +7,70 @@ export default function Home() {
   const githubRepo = process.env.NEXT_PUBLIC_GITHUB_REPO;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      <div className="container mx-auto px-4 py-16">
+    <div className={styles.container}>
+      <div className={styles.innerContainer}>
         {/* Header */}
-        <header className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-gray-900 mb-4">
+        <header className={styles.header}>
+          <h1 className={styles.title}>
             Dylan Hawkins
           </h1>
-          <p className="text-xl text-gray-600">
+          <p className={styles.subtitle}>
             Software Engineer | Full Stack Developer
           </p>
         </header>
 
         {/* Projects Section */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>
             My Projects
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className={styles.projectGrid}>
             
             {/* This Portfolio Website */}
-            <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition">
-              <h3 className="text-xl font-bold mb-2">Portfolio Website</h3>
-              <p className="text-gray-600 mb-4">
+            <div className={styles.projectCard}>
+              <h3 className={styles.projectTitle}>Portfolio Website</h3>
+              <p className={styles.projectDescription}>
                 This site! Built with Next.js and deployed on Vercel with automatic CI/CD from GitHub.
               </p>
-              <div className="flex gap-2 flex-wrap">
-                <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Next.js</span>
-                <span className="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded">React</span>
-                <span className="bg-cyan-100 text-cyan-800 text-xs px-2 py-1 rounded">Tailwind</span>
-                <span className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">Vercel</span>
+              <div className={styles.tagContainer}>
+                <span className={`${styles.tag} ${styles.tagNextJS}`}>Next.js</span>
+                <span className={`${styles.tag} ${styles.tagReact}`}>React</span>
+                <span className={`${styles.tag} ${styles.tagTailwind}`}>Tailwind</span>
+                <span className={`${styles.tag} ${styles.tagVercel}`}>Vercel</span>
               </div>
               {githubUsername && githubRepo && (
-                <div className="mt-4">
-                  <a 
-                    href={`https://github.com/${githubUsername}/${githubRepo}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 text-sm font-medium"
-                  >
-                    View Source →
-                  </a>
-                </div>
+                <a 
+                  href={`https://github.com/${githubUsername}/${githubRepo}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.sourceLink}
+                >
+                  View Source →
+                </a>
               )}
             </div>
 
             {/* Project Card 1 */}
-            <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition">
-              <h3 className="text-xl font-bold mb-2">Project One</h3>
-              <p className="text-gray-600 mb-4">
+            <div className={styles.projectCard}>
+              <h3 className={styles.projectTitle}>Project One</h3>
+              <p className={styles.projectDescription}>
                 Description of your amazing project goes here.
               </p>
-              <div className="flex gap-2">
-                <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">React</span>
-                <span className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">Node.js</span>
+              <div className={styles.tagContainer}>
+                <span className={`${styles.tag} ${styles.tagReact}`}>React</span>
+                <span className={`${styles.tag} ${styles.tagNode}`}>Node.js</span>
               </div>
             </div>
 
             {/* Project Card 2 */}
-            <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition">
-              <h3 className="text-xl font-bold mb-2">Project Two</h3>
-              <p className="text-gray-600 mb-4">
+            <div className={styles.projectCard}>
+              <h3 className={styles.projectTitle}>Project Two</h3>
+              <p className={styles.projectDescription}>
                 Another cool project you've built.
               </p>
-              <div className="flex gap-2">
-                <span className="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded">Python</span>
-                <span className="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded">ML</span>
+              <div className={styles.tagContainer}>
+                <span className={`${styles.tag} ${styles.tagPython}`}>Python</span>
+                <span className={`${styles.tag} ${styles.tagML}`}>ML</span>
               </div>
             </div>
 
@@ -78,14 +78,14 @@ export default function Home() {
         </section>
 
         {/* Contact Section */}
-        <section className="text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">
+        <section className={styles.contactSection}>
+          <h2 className={styles.sectionTitle}>
             Get In Touch
           </h2>
-          <div className="flex justify-center gap-4">
+          <div className={styles.buttonContainer}>
             <a 
               href={`mailto:${email}`}
-              className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
+              className={`${styles.button} ${styles.buttonPrimary}`}
             >
               Email Me
             </a>
@@ -93,7 +93,7 @@ export default function Home() {
               href={`https://github.com/${githubUsername}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-900 transition"
+              className={`${styles.button} ${styles.buttonSecondary}`}
             >
               GitHub
             </a>
@@ -103,6 +103,7 @@ export default function Home() {
     </div>
   );
 }
+
 
 {/*import Image from "next/image";
 
