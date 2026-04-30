@@ -1,0 +1,145 @@
+.container {
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #eff6ff, #e0e7ff);
+}
+
+.innerContainer {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 4rem 1rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: #4b5563;
+}
+
+.section {
+  margin-bottom: 4rem;
+}
+
+.sectionTitle {
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: #111827;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.projectGrid {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .projectGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .projectGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.projectCard {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  transition: box-shadow 0.3s;
+}
+
+.projectCard:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.projectTitle {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.projectDescription {
+  color: #4b5563;
+  margin-bottom: 1rem;
+}
+
+.tagContainer {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.tag {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.tagReact {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.tagNode {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.tagPython {
+  background-color: #e9d5ff;
+  color: #6b21a8;
+}
+
+.tagML {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.contactSection {
+  text-align: center;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.buttonPrimary {
+  background-color: #2563eb;
+  color: white;
+}
+
+.buttonPrimary:hover {
+  background-color: #1d4ed8;
+}
+
+.buttonSecondary {
+  background-color: #1f2937;
+  color: white;
+}
+
+.buttonSecondary:hover {
+  background-color: #111827;
+}
