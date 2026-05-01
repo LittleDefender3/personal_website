@@ -35,52 +35,81 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <div className={styles.innerContainer}>
-      {/* ...your header... */}
+        {/* Header */}
+        <header className={styles.header}>
+          <h1 className={styles.title}>
+            Dylan Hawkins
+          </h1>
+          <p className={styles.subtitle}>
+            Software Engineer | Full Stack Developer
+          </p>
+        </header>
 
-      <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>My Projects</h2>
+        {/* Projects Section */}
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>My Projects</h2>
 
-        <div className={styles.projectGrid}>
-          {projects.map((p) => (
-            <div
-              key={p.id}
-              className={styles.projectCard}
-              role="button"
-              tabIndex={0}
-              onClick={() => openProject(p)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") openProject(p);
-              }}
-            >
-              <h3 className={styles.projectTitle}>{p.title}</h3>
-              <p className={styles.projectDescription}>{p.shortDescription}</p>
+          <div className={styles.projectGrid}>
+            {projects.map((p) => (
+              <div
+                key={p.id}
+                className={styles.projectCard}
+                role="button"
+                tabIndex={0}
+                onClick={() => openProject(p)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") openProject(p);
+                }}
+              >
+                <h3 className={styles.projectTitle}>{p.title}</h3>
+                <p className={styles.projectDescription}>{p.shortDescription}</p>
 
-              {/* reuse your existing tag styling if you want */}
-              {p.tags?.length ? (
-                <div className={styles.tagContainer}>
+                {p.tags?.length ? (
+                  <div className={styles.tagContainer}>
                     {p.tags?.map((t) => (
-                        <span
+                      <span
                         key={t.label}
-                        className={`${styles.tag} ${styles[`tag_${t.variant}`]}`}
-                        >
-                      {t.label}
-                        </span>
-                      ))}
-                </div>
-              ) : null}
-            </div>
-          ))}
-        </div>
-      </section>
+                        className={`tag tag_${t.variant}`}
+                      >
+                        {t.label}
+                      </span>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
+            ))}
+          </div>
+        </section>
 
-      {/* ...your contact section... */}
+        {/* Contact Section */}
+        <section className={styles.contactSection}>
+          <h2 className={styles.sectionTitle}>
+            Get In Touch
+          </h2>
+          <div className={styles.buttonContainer}>
+            <a 
+              href={`mailto:${email}`}
+              className={`${styles.button} ${styles.buttonPrimary}`}
+            >
+              Email Me
+            </a>
+            <a 
+              href={`https://github.com/${githubUsername}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${styles.button} ${styles.buttonSecondary}`}
+            >
+              GitHub
+            </a>
+          </div>
+        </section>
 
-      <ProjectModal
-        open={open}
-        project={selectedProject}
-        onClose={closeModal}
-        portfolioSourceUrl={portfolioSourceUrl}
-      />
+        <ProjectModal
+          open={open}
+          project={selectedProject}
+          onClose={closeModal}
+          portfolioSourceUrl={portfolioSourceUrl}
+        />
       </div>
     </div>
   );
