@@ -1,104 +1,86 @@
-import styles from './page.module.css';
+"use client";
+
+import { useMemo, useState } from "react";
+import styles from "./page.module.css";
+
+import { projects, type Project } from "./projectData";
+import { ProjectModal } from "./ProjectModal";
+
+// If you placed modal-template.css somewhere else, adjust the path:
+import "./modal-template.css";
 
 export default function Home() {
-  // Access environment variables
   const email = process.env.NEXT_PUBLIC_EMAIL;
   const githubUsername = process.env.NEXT_PUBLIC_GITHUB_USERNAME;
   const githubRepo = process.env.NEXT_PUBLIC_GITHUB_REPO;
 
+  const portfolioSourceUrl = useMemo(() => {
+    if (!githubUsername || !githubRepo) return null;
+    return `https://github.com/${githubUsername}/${githubRepo}`;
+  }, [githubUsername, githubRepo]);
+
+  const [open, setOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  function openProject(p: Project) {
+    setSelectedProject(p);
+    setOpen(true);
+  }
+
+  function closeModal() {
+    setOpen(false);
+    setSelectedProject(null);
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.innerContainer}>
-        {/* Header */}
-        <header className={styles.header}>
-          <h1 className={styles.title}>
-            Dylan Hawkins
-          </h1>
-          <p className={styles.subtitle}>
-            Software Engineer | Full Stack Developer
-          </p>
-        </header>
+      {/* ...your header... */}
 
-        {/* Projects Section */}
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>
-            My Projects
-          </h2>
-          <div className={styles.projectGrid}>
-            
-            {/* This Portfolio Website */}
-            <div className={styles.projectCard}>
-              <h3 className={styles.projectTitle}>Portfolio Website</h3>
-              <p className={styles.projectDescription}>
-                This site! Built with Next.js and deployed on Vercel with automatic CI/CD from GitHub.
-              </p>
-              <div className={styles.tagContainer}>
-                <span className={`${styles.tag} ${styles.tagNextJS}`}>Next.js</span>
-                <span className={`${styles.tag} ${styles.tagReact}`}>React</span>
-                <span className={`${styles.tag} ${styles.tagTailwind}`}>Tailwind</span>
-                <span className={`${styles.tag} ${styles.tagVercel}`}>Vercel</span>
-              </div>
-              {githubUsername && githubRepo && (
-                <a 
-                  href={`https://github.com/${githubUsername}/${githubRepo}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.sourceLink}
-                >
-                  View Source →
-                </a>
-              )}
-            </div>
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle}>My Projects</h2>
 
-            {/* Project Card 1 */}
-            <div className={styles.projectCard}>
-              <h3 className={styles.projectTitle}>Project One</h3>
-              <p className={styles.projectDescription}>
-                Description of your amazing project goes here.
-              </p>
-              <div className={styles.tagContainer}>
-                <span className={`${styles.tag} ${styles.tagReact}`}>React</span>
-                <span className={`${styles.tag} ${styles.tagNode}`}>Node.js</span>
-              </div>
-            </div>
-
-            {/* Project Card 2 */}
-            <div className={styles.projectCard}>
-              <h3 className={styles.projectTitle}>Project Two</h3>
-              <p className={styles.projectDescription}>
-                Another cool project you've built.
-              </p>
-              <div className={styles.tagContainer}>
-                <span className={`${styles.tag} ${styles.tagPython}`}>Python</span>
-                <span className={`${styles.tag} ${styles.tagML}`}>ML</span>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        {/* Contact Section */}
-        <section className={styles.contactSection}>
-          <h2 className={styles.sectionTitle}>
-            Get In Touch
-          </h2>
-          <div className={styles.buttonContainer}>
-            <a 
-              href={`mailto:${email}`}
-              className={`${styles.button} ${styles.buttonPrimary}`}
+        <div className={styles.projectGrid}>
+          {projects.map((p) => (
+            <div
+              key={p.id}
+              className={styles.projectCard}
+              role="button"
+              tabIndex={0}
+              onClick={() => openProject(p)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") openProject(p);
+              }}
             >
-              Email Me
-            </a>
-            <a 
-              href={`https://github.com/${githubUsername}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`${styles.button} ${styles.buttonSecondary}`}
-            >
-              GitHub
-            </a>
-          </div>
-        </section>
+              <h3 className={styles.projectTitle}>{p.title}</h3>
+              <p className={styles.projectDescription}>{p.shortDescription}</p>
+
+              {/* reuse your existing tag styling if you want */}
+              {p.tags?.length ? (
+                <div className={styles.tagContainer}>
+                    {p.tags?.map((t) => (
+                        <span
+                        key={t.label}
+                        className={`${styles.tag} ${styles[`tag_${t.variant}`]}`}
+                        >
+                      {t.label}
+                        </span>
+                      ))}
+                </div>
+              ) : null}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ...your contact section... */}
+
+      <ProjectModal
+        open={open}
+        project={selectedProject}
+        onClose={closeModal}
+        portfolioSourceUrl={portfolioSourceUrl}
+      />
       </div>
     </div>
   );

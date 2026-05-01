@@ -173,3 +173,12 @@
 .buttonSecondary:hover {
   background-color: #111827;
 }
+
+.tag_default { background: #f3f4f6; color: #374151; }
+.tag_nextjs { background: #dbeafe; color: #1e40af; }
+.tag_react { background: #dbeafe; color: #1e40af; }
+.tag_node { background: #d1fae5; color: #065f46; }
+.tag_python { background: #e9d5ff; color: #6b21a8; }
+.tag_ml { background: #fef3c7; color: #92400e; }
+.tag_tailwind { background: #cffafe; color: #155e75; }
+.tag_vercel { background: #f3f4f6; color: #374151; }
