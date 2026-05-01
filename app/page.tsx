@@ -6,8 +6,8 @@ import styles from "./page.module.css";
 import { projects, type Project } from "./projectData";
 import { ProjectModal } from "./ProjectModal";
 
-// If you placed modal-template.css somewhere else, adjust the path:
 import "./modal-template.css";
+import "./tags.css";
 
 export default function Home() {
   const email = process.env.NEXT_PUBLIC_EMAIL;
