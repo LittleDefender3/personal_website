@@ -11,7 +11,7 @@ export function Terminal() {
     {
       command: '',
       output: [
-        'Welcome!',
+        'Welcome! This site is still currently a work in progress.',
         'Type "help" to see available commands.',
         'Or click the button in the top right to switch to the normal view.',
         ''
@@ -95,11 +95,11 @@ export function Terminal() {
     <div className="w-full h-full bg-black text-green-400 font-mono p-4 sm:p-6 overflow-hidden flex flex-col text-xs sm:text-sm md:text-base">
       <div
         ref={terminalRef}
-        className="flex-1 overflow-y-auto mb-4 break-words"
+        className="flex-1 overflow-y-auto break-words"
         onClick={() => inputRef.current?.focus()}
       >
         {history.map((entry, i) => (
-          <div key={i}>
+          <div key={i} className="mb-2">
             {entry.command && (
               <div className="flex gap-1 sm:gap-2 break-words">
                 <span className="text-green-500 flex-shrink-0">$</span>
@@ -107,26 +107,29 @@ export function Terminal() {
               </div>
             )}
             {entry.output.map((line, j) => (
-              <div key={j} className="pl-2 sm:pl-4 text-green-300 break-words">
+              <div key={j} className="text-green-300 break-words">
                 {line}
               </div>
             ))}
           </div>
         ))}
+        
+        {/* Current input prompt */}
+        <div className="flex gap-1 sm:gap-2">
+          <span className="text-green-500 flex-shrink-0">$</span>
+          <form onSubmit={handleSubmit} className="flex-1 min-w-0">
+            <input
+              ref={inputRef}
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              className="w-full bg-transparent outline-none text-green-400"
+              autoFocus
+              spellCheck={false}
+            />
+          </form>
+        </div>
       </div>
-
-      <form onSubmit={handleSubmit} className="flex gap-1 sm:gap-2">
-        <span className="text-green-500 flex-shrink-0">$</span>
-        <input
-          ref={inputRef}
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          className="flex-1 bg-transparent outline-none text-green-400 min-w-0"
-          autoFocus
-          spellCheck={false}
-        />
-      </form>
     </div>
   );
 }
