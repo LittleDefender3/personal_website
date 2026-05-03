@@ -92,22 +92,22 @@ export function Terminal() {
   };
 
   return (
-    <div className="w-full h-full bg-black text-green-400 font-mono p-6 overflow-hidden flex flex-col">
+    <div className="w-full h-full bg-black text-green-400 font-mono p-4 sm:p-6 overflow-hidden flex flex-col text-xs sm:text-sm md:text-base">
       <div
         ref={terminalRef}
-        className="flex-1 overflow-y-auto mb-4"
+        className="flex-1 overflow-y-auto mb-4 break-words"
         onClick={() => inputRef.current?.focus()}
       >
         {history.map((entry, i) => (
           <div key={i}>
             {entry.command && (
-              <div className="flex gap-2">
-                <span className="text-green-500">$</span>
-                <span>{entry.command}</span>
+              <div className="flex gap-1 sm:gap-2 break-words">
+                <span className="text-green-500 flex-shrink-0">$</span>
+                <span className="break-all">{entry.command}</span>
               </div>
             )}
             {entry.output.map((line, j) => (
-              <div key={j} className="pl-4 text-green-300">
+              <div key={j} className="pl-2 sm:pl-4 text-green-300 break-words">
                 {line}
               </div>
             ))}
@@ -115,14 +115,14 @@ export function Terminal() {
         ))}
       </div>
 
-      <form onSubmit={handleSubmit} className="flex gap-2">
-        <span className="text-green-500">$</span>
+      <form onSubmit={handleSubmit} className="flex gap-1 sm:gap-2">
+        <span className="text-green-500 flex-shrink-0">$</span>
         <input
           ref={inputRef}
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          className="flex-1 bg-transparent outline-none text-green-400"
+          className="flex-1 bg-transparent outline-none text-green-400 min-w-0"
           autoFocus
           spellCheck={false}
         />
