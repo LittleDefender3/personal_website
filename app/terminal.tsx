@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { aboutInfo, skills, projects, contactInfo } from '@/app/data';
 
 interface CommandHistory {
   command: string;
@@ -11,7 +12,7 @@ export function Terminal() {
     {
       command: '',
       output: [
-        'Welcome! This site is still currently a work in progress.',
+        'Welcome!',
         'Type "help" to see available commands.',
         'Or click the button in the top right to switch to the normal view.',
         ''
@@ -39,33 +40,53 @@ export function Terminal() {
       ''
     ],
     about: () => [
-      'about text',
+      `About ${aboutInfo.name}`,
       '',
+      `${aboutInfo.title}`,
+      `Location: ${aboutInfo.location}`,
       '',
+      aboutInfo.bio,
+      '',
+      `Years of Experience: ${aboutInfo.yearsOfExperience}`,
       ''
     ],
-    skills: () => [
-      'Skills:',
-      '',
-      '',
-      '',
-      '',
-      ''
-    ],
-    projects: () => [
-      'Recent Projects:',
-      '  1. Terminal Portfolio - This website!',
-      '',
-      '',
-      ''
-    ],
+    skills: () => {
+      const output = ['Technical Skills:', ''];
+      skills.forEach(skillGroup => {
+        output.push(`${skillGroup.category}:`);
+        skillGroup.items.forEach(item => {
+          output.push(`  • ${item}`);
+        });
+        output.push('');
+      });
+      return output;
+    },
+    projects: () => {
+      const output = ['Recent Projects:', ''];
+      projects.forEach(project => {
+        output.push(`${project.id}. ${project.title}`);
+        output.push(`   ${project.description}`);
+        if (project.technologies) {
+          output.push(`   Tech: ${project.technologies.join(', ')}`);
+        }
+        if (project.github) {
+          output.push(`   GitHub: ${project.github}`);
+        }
+        if (project.link) {
+          output.push(`   Link: ${project.link}`);
+        }
+        output.push('');
+      });
+      return output;
+    },
     contact: () => [
       'Contact Information:',
-      '  Email: dw.hwkns+dev@gmail.com',
-      '  GitHub: github.com/LittleDefender3',
-      '  LinkedIn: linkedin.com/in/username',
+      `  Email: ${contactInfo.email}`,
+      `  GitHub: ${contactInfo.github}`,
+      `  LinkedIn: ${contactInfo.linkedin}`,
+      contactInfo.website ? `  Website: ${contactInfo.website}` : '',
       ''
-    ],
+    ].filter(line => line !== ''),
     clear: () => {
       setHistory([]);
       return [];
