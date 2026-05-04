@@ -4,8 +4,24 @@ import { Terminal } from './terminal';
 import { NormalSite } from './NormalSite';
 import { Monitor, Terminal as TerminalIcon } from 'lucide-react';
 
+interface CommandHistory {
+  command: string;
+  output: string[];
+}
+
 export default function App() {
   const [isTerminalMode, setIsTerminalMode] = useState(true);
+  const [terminalHistory, setTerminalHistory] = useState<CommandHistory[]>([
+    {
+      command: '',
+      output: [
+        'Welcome!',
+        'Type "help" to see available commands.',
+        'Or click the button in the top right to switch to the normal view.',
+        ''
+      ]
+    }
+  ]);
 
   return (
     <div className="w-screen h-screen relative">
@@ -32,7 +48,11 @@ export default function App() {
       </button>
 
       {/* Content */}
-      {isTerminalMode ? <Terminal /> : <NormalSite />}
+      {isTerminalMode ? (
+        <Terminal history={terminalHistory} setHistory={setTerminalHistory} />
+      ) : (
+        <NormalSite />
+      )}
     </div>
   );
 }

@@ -6,19 +6,13 @@ interface CommandHistory {
   output: string[];
 }
 
-export function Terminal() {
+interface TerminalProps {
+  history: CommandHistory[];
+  setHistory: (history: CommandHistory[]) => void;
+}
+
+export function Terminal({ history, setHistory }: TerminalProps) {
   const [input, setInput] = useState('');
-  const [history, setHistory] = useState<CommandHistory[]>([
-    {
-      command: '',
-      output: [
-        'Welcome!',
-        'Type "help" to see available commands.',
-        'Or click the button in the top right to switch to the normal view.',
-        ''
-      ]
-    }
-  ]);
   const inputRef = useRef<HTMLInputElement>(null);
   const terminalRef = useRef<HTMLDivElement>(null);
 
@@ -39,10 +33,6 @@ export function Terminal() {
       '  help     - Show this help message',
       ''
     ],
-    ls: () => ['easter egg found!', ''],
-    pwd: () => ['easter egg found!', ''],
-    cd: () => ['easter egg found!', ''],
-    man: () => ['easter egg found!', ''],
     about: () => [
       `About ${aboutInfo.name}`,
       '',

@@ -30,7 +30,7 @@ export const aboutInfo = {
 export const skills: Skill[] = [
   {
     category: "Languages",
-    items: ["TypeScript", "JavaScript", "Python", "Java"]
+    items: ["C++", "C", "SQL", "Python", "Java", "TypeScript", "JavaScript"]
   },
   {
     category: "Frontend",
