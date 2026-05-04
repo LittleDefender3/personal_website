@@ -52,7 +52,7 @@ export const projects: Project[] = [
     title: "Terminal Portfolio",
     description: "A unique portfolio website with terminal and normal view modes",
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
-    link: "https://website-sand-seven.vercel.app",
+    link: "https://dylanhawkins.dev",
     github: "https://github.com/LittleDefender3/personal_website"
   },
   // Add more projects here
@@ -61,6 +61,6 @@ export const projects: Project[] = [
 export const contactInfo: ContactInfo = {
   email: "dw.hwkns+dev@gmail.com",
   github: "github.com/LittleDefender3",
-  linkedin: "linkedin.com/in/username",
+  linkedin: "linkedin.com/in/dylanhawkinsau",
   website: "https://dylanhawkins.dev"
 };
