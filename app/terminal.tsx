@@ -39,6 +39,10 @@ export function Terminal() {
       '  help     - Show this help message',
       ''
     ],
+    ls: () => ['easter egg found!', ''],
+    pwd: () => ['easter egg found!', ''],
+    cd: () => ['easter egg found!', ''],
+    man: () => ['easter egg found!', ''],
     about: () => [
       `About ${aboutInfo.name}`,
       '',

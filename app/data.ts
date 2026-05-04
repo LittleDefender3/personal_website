@@ -20,10 +20,10 @@ export interface ContactInfo {
 }
 
 export const aboutInfo = {
-  name: "Your Name",
+  name: "Dylan Hawkins",
   title: "Software Developer",
   bio: "Your bio text here. Tell people about yourself, your interests, and what you do.",
-  location: "Your Location",
+  location: "Perth, Australia (Currently, open to moving)",
   yearsOfExperience: 0,
 };
 
@@ -43,7 +43,7 @@ export const skills: Skill[] = [
   {
     category: "Tools",
     items: ["Git", "GitHub", "VS Code", "Docker"]
-  }
+  },
 ];
 
 export const projects: Project[] = [
