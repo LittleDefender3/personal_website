@@ -60,8 +60,8 @@ export function Terminal({ history, setHistory }: TerminalProps) {
       projects.forEach(project => {
         output.push(`${project.id}. ${project.title}`);
         output.push(`   ${project.description}`);
-        if (project.technologies) {
-          output.push(`   Tech: ${project.technologies.join(', ')}`);
+        if (project.tools) {
+          output.push(`   Tools: ${project.tools.join(', ')}`);
         }
         if (project.github) {
           output.push(`   GitHub: ${project.github}`);
@@ -106,6 +106,34 @@ export function Terminal({ history, setHistory }: TerminalProps) {
     setInput('');
   };
 
+  const renderLine = (line: string) => {
+    const urlRegex = /(https?:\/\/[^\s]+|(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(?:\/[^\s]*)?)/g;
+    const result: React.ReactNode[] = [];
+    let lastIndex = 0;
+    let match;
+
+    while ((match = urlRegex.exec(line)) !== null) {
+      if (match.index > lastIndex) {
+        result.push(line.slice(lastIndex, match.index));
+      }
+      const url = match[0];
+      const href = url.startsWith('http') ? url : `https://${url}`;
+      result.push(
+        <a key={match.index} href={href} target="_blank" rel="noopener noreferrer"
+          className="underline text-green-400 hover:text-green-200">
+          {url}
+        </a>
+      );
+      lastIndex = match.index + match[0].length;
+    }
+
+    if (lastIndex < line.length) {
+      result.push(line.slice(lastIndex));
+    }
+
+    return result;
+  };
+
   return (
     <div className="w-full h-full bg-black text-green-400 font-mono p-4 sm:p-6 overflow-hidden flex flex-col text-xs sm:text-sm md:text-base">
       <div
@@ -123,12 +151,12 @@ export function Terminal({ history, setHistory }: TerminalProps) {
             )}
             {entry.output.map((line, j) => (
               <div key={j} className="text-green-300 break-words">
-                {line}
+                {renderLine(line)}
               </div>
             ))}
           </div>
         ))}
-        
+
         {/* Current input prompt */}
         <div className="flex gap-1 sm:gap-2">
           <span className="text-green-500 flex-shrink-0">$</span>

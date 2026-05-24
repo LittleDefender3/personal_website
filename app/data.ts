@@ -2,7 +2,7 @@ export interface Project {
   id: number;
   title: string;
   description: string;
-  technologies?: string[];
+  tools?: string[];
   link?: string;
   github?: string;
 }
@@ -22,9 +22,9 @@ export interface ContactInfo {
 export const aboutInfo = {
   name: "Dylan Hawkins",
   title: "Software Developer",
-  bio: "Your bio text here. Tell people about yourself, your interests, and what you do.",
+  bio: "TODO: Add bio",
   location: "Perth, Australia (Currently, open to moving)",
-  yearsOfExperience: 0,
+  yearsOfExperience: 7,
 };
 
 export const skills: Skill[] = [
@@ -51,11 +51,18 @@ export const projects: Project[] = [
     id: 1,
     title: "Terminal Portfolio",
     description: "A unique portfolio website with terminal and normal view modes",
-    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+    tools: ["NextJS", "React", "TypeScript", "Tailwind CSS"],
     link: "https://dylanhawkins.dev",
     github: "https://github.com/LittleDefender3/personal_website"
   },
-  // Add more projects here
+  {
+    id: 2,
+    title: "Project Two",
+    description: "template",
+    tools: ["template", "template"],
+    link: "link",
+    github: "repo"
+  }
 ];
 
 export const contactInfo: ContactInfo = {

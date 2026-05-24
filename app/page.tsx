@@ -18,6 +18,7 @@ export default function App() {
         'Welcome!',
         'Type "help" to see available commands.',
         'Or click the button in the top right to switch to the normal view.',
+        'DO NOTE: This website is still a work in progress, so there is missing content and probably some bugs I\'m yet to find. The site will be completed after my semester 1 exams.',
         ''
       ]
     }
