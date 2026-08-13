@@ -6,7 +6,7 @@ export function NormalSite() {
       <div className="max-w-4xl mx-auto px-6 py-16">
         {/* Hero Section */}
         <section className="mb-16">
-          <h1 className="text-3xl text-red-600 mb-4">DO NOTE: This website is still a work in progress, so there is missing content and probably some bugs I'm yet to find. The site will be completed after my semester 1 exams.</h1>
+          <h1 className="text-3xl text-red-600 mb-4">DO NOTE: This website is still a work in progress, so there is missing content and probably some bugs I'm yet to find. The site will be completed after my 21CS internship is done.</h1>
           <h1 className="text-5xl font-bold text-gray-900 mb-4">{aboutInfo.name}</h1>
           <p className="text-2xl text-indigo-600 mb-6">{aboutInfo.title}</p>
           <p className="text-lg text-gray-700 leading-relaxed">{aboutInfo.bio}</p>
