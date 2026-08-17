@@ -1,0 +1,90 @@
+/* ── Taskbar / Dock ──────────────────────────────────────────────────────── */
+.taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px 10px;
+  background: rgba(7, 5, 15, 0.82);
+  border: 1px solid rgba(180, 77, 255, 0.35);
+  border-bottom: none;
+  border-radius: 12px 12px 0 0;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 1000;
+  box-shadow: 0 -4px 24px rgba(180, 77, 255, 0.15), 0 0 0 1px rgba(0, 245, 255, 0.06);
+}
+
+.divider {
+  width: 1px;
+  align-self: stretch;
+  margin: 4px 2px;
+  background: rgba(180, 77, 255, 0.25);
+}
+
+.dockBtn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 6px 12px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+  color: var(--cp-dim);
+  min-width: 56px;
+  text-decoration: none;
+}
+
+.dockBtn:hover {
+  background: rgba(180, 77, 255, 0.1);
+  border-color: rgba(180, 77, 255, 0.4);
+  color: var(--cp-purple);
+  transform: translateY(-3px);
+  box-shadow: 0 0 12px rgba(180, 77, 255, 0.3);
+}
+
+.dockBtn.active {
+  color: var(--cp-cyan);
+  border-color: rgba(0, 245, 255, 0.3);
+  background: rgba(0, 245, 255, 0.05);
+}
+
+.dockBtn.active:hover {
+  color: var(--cp-cyan);
+  border-color: rgba(0, 245, 255, 0.6);
+  box-shadow: 0 0 12px rgba(0, 245, 255, 0.3);
+}
+
+.icon {
+  font-family: monospace;
+  font-size: 18px;
+  line-height: 1;
+  text-shadow: 0 0 6px currentColor;
+}
+
+.label {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 9px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: inherit;
+}
+
+.dot {
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--cp-cyan);
+  box-shadow: 0 0 4px var(--cp-cyan);
+}

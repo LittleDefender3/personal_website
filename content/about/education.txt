@@ -1,0 +1,13 @@
+Degree: Bachelor of Information Technology
+Majors: Computer Science & Games Technology
+Institution: Murdoch University
+Duration: 2023 – 2026
+
+Scholarships
+  - ACS Intern Scholarship — for internship at 21st Century Software
+
+Certificates
+  - Microsoft DP-900 (Azure Data Fundamentals)
+  - WA Certificate of Education — North Albany SHS
+  - Certificate III in Retail (SIR30216) — Kentucky Fried Chicken Pty Ltd
+  - Citizenship of the Year 2020 — North Albany SHS

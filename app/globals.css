@@ -1,26 +1,80 @@
-@import "tailwindcss";
-
+/* ── Cyberpunk neon palette ─────────────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --cp-bg:        #07050f;
+  --cp-bg2:       #0e0b1a;
+  --cp-border:    #1a1230;
+  --cp-magenta:   #ff2d78;
+  --cp-cyan:      #00f5ff;
+  --cp-purple:    #b44dff;
+  --cp-text:      #e0d8f0;
+  --cp-dim:       #6b5f88;
+  --cp-amber:     #ffb830;
+  --cp-red:       #ff3860;
+  --cp-green:     #39ff14;
+  --cp-glow-mag:  0 0 8px #ff2d78, 0 0 24px rgba(255,45,120,0.4);
+  --cp-glow-cyan: 0 0 8px #00f5ff, 0 0 24px rgba(0,245,255,0.3);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--cp-bg);
+  overscroll-behavior: none;
+}
+
+/* ── Glitch keyframes ───────────────────────────────────────────────────────── */
+@keyframes glitch-1 {
+  0%,94%,100% { clip-path: none; transform: translate(0); }
+  95% { clip-path: inset(20% 0 60% 0); transform: translate(-3px, 1px); }
+  97% { clip-path: inset(60% 0 10% 0); transform: translate(3px, -1px); }
+  99% { clip-path: inset(40% 0 40% 0); transform: translate(-2px, 2px); }
+}
+
+@keyframes glitch-2 {
+  0%,96%,100% { clip-path: none; transform: translate(0); opacity: 1; }
+  97% { clip-path: inset(10% 0 80% 0); transform: translate(4px, 0); opacity: 0.8; }
+  99% { clip-path: inset(70% 0 5% 0); transform: translate(-4px, 0); opacity: 0.8; }
+}
+
+@keyframes flicker {
+  0%,100% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.6; }
+  94% { opacity: 1; }
+  96% { opacity: 0.8; }
+  97% { opacity: 1; }
+}
+
+@keyframes cursor-blink {
+  0%,49% { border-color: var(--cp-cyan); box-shadow: var(--cp-glow-cyan); }
+  50%,100% { border-color: transparent; box-shadow: none; }
+}
+
+@keyframes scanline-drift {
+  from { background-position: 0 0; }
+  to   { background-position: 0 100%; }
+}
+
+/* ── Reduced-motion overrides ───────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Remove default focus ring; Terminal component handles focus visually */
+:focus-visible {
+  outline: 2px solid var(--cp-cyan);
+  outline-offset: 2px;
 }

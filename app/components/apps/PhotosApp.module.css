@@ -1,0 +1,110 @@
+/* ── Photos App ───────────────────────────────────────────────────────────── */
+.photos {
+  height: 100%;
+  overflow-y: auto;
+  padding: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(180, 77, 255, 0.3) transparent;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.tile {
+  aspect-ratio: 4 / 3;
+  border-radius: 6px;
+  border: 1px solid rgba(180, 77, 255, 0.3);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  padding: 0;
+  transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+}
+
+.tile:hover {
+  transform: scale(1.04);
+  border-color: rgba(0, 245, 255, 0.6);
+  box-shadow: 0 0 16px rgba(0, 245, 255, 0.25);
+}
+
+.tileLabel {
+  width: 100%;
+  padding: 6px 8px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 10px;
+  color: #e0d8f0;
+  background: rgba(7, 5, 15, 0.7);
+  text-align: center;
+  letter-spacing: 0.04em;
+  backdrop-filter: blur(4px);
+}
+
+/* ── Lightbox ──────────────────────────────────────────────────────────────── */
+.lightbox {
+  position: absolute;
+  inset: 0;
+  background: rgba(7, 5, 15, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  backdrop-filter: blur(6px);
+}
+
+.lightboxInner {
+  width: min(480px, 90%);
+  aspect-ratio: 4 / 3;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 245, 255, 0.5);
+  box-shadow: 0 0 40px rgba(0, 245, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  gap: 10px;
+}
+
+.lightboxClose {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(7, 5, 15, 0.7);
+  border: 1px solid rgba(255, 45, 120, 0.5);
+  color: var(--cp-magenta);
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, box-shadow 0.15s;
+}
+
+.lightboxClose:hover {
+  background: rgba(255, 45, 120, 0.15);
+  box-shadow: 0 0 8px rgba(255, 45, 120, 0.4);
+}
+
+.lightboxLabel {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 18px;
+  color: #e0d8f0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.lightboxHint {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 11px;
+  color: rgba(224, 216, 240, 0.5);
+  letter-spacing: 0.04em;
+}

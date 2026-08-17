@@ -1,0 +1,115 @@
+/* ── Window shell ────────────────────────────────────────────────────────── */
+.window {
+  display: flex;
+  flex-direction: column;
+  background: rgba(7, 5, 15, 0.88);
+  border: 1px solid rgba(180, 77, 255, 0.5);
+  border-radius: 6px;
+  box-shadow:
+    0 0 0 1px rgba(0, 245, 255, 0.08),
+    0 0 24px rgba(180, 77, 255, 0.25),
+    0 8px 32px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ── Title bar ───────────────────────────────────────────────────────────── */
+.titleBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 10px;
+  height: 36px;
+  min-height: 36px;
+  background: rgba(14, 11, 26, 0.95);
+  border-bottom: 1px solid rgba(180, 77, 255, 0.35);
+  cursor: grab;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.titleBar:active {
+  cursor: grabbing;
+}
+
+.titleIcon {
+  font-family: monospace;
+  font-size: 12px;
+  color: var(--cp-cyan);
+  text-shadow: 0 0 6px var(--cp-cyan);
+  flex-shrink: 0;
+}
+
+.titleText {
+  flex: 1;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--cp-purple);
+  text-shadow: 0 0 6px rgba(180, 77, 255, 0.6);
+  text-transform: uppercase;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.titleButtons {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.titleBtn {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--cp-dim);
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s, box-shadow 0.15s;
+  line-height: 1;
+  padding: 0;
+}
+
+.minimizeBtn:hover {
+  background: rgba(255, 184, 48, 0.15);
+  border-color: var(--cp-amber);
+  color: var(--cp-amber);
+  box-shadow: 0 0 6px rgba(255, 184, 48, 0.4);
+}
+
+.closeBtn:hover {
+  background: rgba(255, 45, 120, 0.15);
+  border-color: var(--cp-magenta);
+  color: var(--cp-magenta);
+  box-shadow: 0 0 6px rgba(255, 45, 120, 0.4);
+}
+
+/* ── Content area ────────────────────────────────────────────────────────── */
+.content {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── Mobile full-screen fallback ─────────────────────────────────────────── */
+.mobileWindow {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: rgba(7, 5, 15, 0.95);
+  border: 1px solid rgba(180, 77, 255, 0.5);
+  z-index: 100;
+}
+
+.mobileWindow .content {
+  flex: 1;
+  overflow: auto;
+}

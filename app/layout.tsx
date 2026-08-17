@@ -1,20 +1,21 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "Dylan Hawkins - Software Developer Portfolio",
-  description: "Dylan Hawkins' personal portfolio showcasing projects and skills.",
+  title: "Dylan Hawkins — Terminal Portfolio",
+  description:
+    "Interactive terminal-style portfolio for Dylan Hawkins, Software Engineer and Games Developer. Type 'help' to get started.",
+  keywords: [
+    "Dylan Hawkins",
+    "Software Engineer",
+    "Games Developer",
+    "Portfolio",
+    "Murdoch University",
+    "Computer Science",
+    "Games Technology",
+    "Next.js",
+    "TypeScript",
+  ],
 };
 
 export default function RootLayout({
@@ -23,11 +24,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en">
+      <body>{children}</body>
     </html>
   );
 }

@@ -1,0 +1,119 @@
+/* ── Entry choice modal ──────────────────────────────────────────────────── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(7, 5, 15, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  animation: fade-in 0.2s ease-out;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  padding: 32px;
+  background: rgba(14, 11, 26, 0.95);
+  border: 1px solid rgba(180, 77, 255, 0.4);
+  border-radius: 14px;
+  box-shadow: 0 0 32px rgba(180, 77, 255, 0.2), 0 0 0 1px rgba(0, 245, 255, 0.05);
+  font-family: "Courier New", Courier, monospace;
+  color: var(--cp-text);
+}
+
+.closeBtn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: transparent;
+  border: none;
+  color: var(--cp-dim);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: color 0.15s;
+}
+
+.closeBtn:hover {
+  color: var(--cp-cyan);
+}
+
+.heading {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--cp-text);
+  text-shadow: var(--cp-glow-mag);
+  margin-bottom: 8px;
+  padding-right: 24px;
+}
+
+.subheading {
+  font-size: 12px;
+  color: var(--cp-dim);
+  margin-bottom: 24px;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.option {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 18px 16px;
+  background: rgba(7, 5, 15, 0.5);
+  border: 1px solid rgba(180, 77, 255, 0.25);
+  border-radius: 10px;
+  color: var(--cp-text);
+  text-align: left;
+  text-decoration: none;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+
+.option:hover {
+  border-color: var(--cp-cyan);
+  background: rgba(0, 245, 255, 0.06);
+  transform: translateY(-2px);
+  box-shadow: 0 0 16px rgba(0, 245, 255, 0.2);
+}
+
+.optionIcon {
+  font-size: 20px;
+  color: var(--cp-cyan);
+  text-shadow: 0 0 6px currentColor;
+}
+
+.optionTitle {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--cp-text);
+}
+
+.optionDesc {
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--cp-dim);
+}
+
+@media (max-width: 480px) {
+  .options {
+    grid-template-columns: 1fr;
+  }
+}

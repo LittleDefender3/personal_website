@@ -1,0 +1,309 @@
+/* ── variables ─────────────────────────────────────────────────────────────── */
+.terminal {
+  --bg:           var(--cp-bg);
+  --bg2:          var(--cp-bg2);
+  --magenta:      var(--cp-magenta);
+  --cyan:         var(--cp-cyan);
+  --purple:       var(--cp-purple);
+  --amber:        var(--cp-amber);
+  --red:          var(--cp-red);
+  --green:        var(--cp-green);
+  --text:         var(--cp-text);
+  --dim:          var(--cp-dim);
+  --border:       var(--cp-border);
+  --tag-bg:       rgba(0, 245, 255, 0.05);
+  --tag-border:   rgba(0, 245, 255, 0.25);
+  --learn-border: rgba(255, 184, 48, 0.35);
+  --learn-color:  var(--amber);
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  color: var(--text);
+  font-family: "Courier New", Courier, monospace;
+  font-size: clamp(12px, 1.5vw, 14px);
+  line-height: 1.65;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  cursor: text;
+}
+
+/* ── glass panel behind terminal content ───────────────────────────────────── */
+.terminalInner {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+  background: rgba(7, 5, 15, 0.82);
+  border: none;
+  box-shadow: none;
+  backdrop-filter: blur(8px);
+  margin: 0;
+  border-radius: 0;
+  max-height: 100%;
+}
+
+/* ── CRT scanlines ─────────────────────────────────────────────────────────── */
+.scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  animation: scanline-drift 12s linear infinite;
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scanlines { animation: none; }
+}
+
+/* ── title bar ─────────────────────────────────────────────────────────────── */
+.titleBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: rgba(14, 11, 26, 0.9);
+  border-bottom: 1px solid rgba(180, 77, 255, 0.3);
+  flex-shrink: 0;
+  user-select: none;
+  border-radius: 7px 7px 0 0;
+  position: relative;
+}
+
+/* neon glow line under title bar */
+.titleBar::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cp-magenta), var(--cp-cyan), transparent);
+  filter: blur(1px);
+}
+
+.trafficLights {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.dotRed    { background: #ff5f57; box-shadow: 0 0 6px rgba(255,95,87,0.7); }
+.dotYellow { background: #febc2e; box-shadow: 0 0 6px rgba(254,188,46,0.7); }
+.dotGreen  { background: #28c840; box-shadow: 0 0 6px rgba(40,200,64,0.7); }
+
+.titleText {
+  flex: 1;
+  text-align: center;
+  font-size: 11px;
+  color: var(--dim);
+  letter-spacing: 0.04em;
+  /* subtle glitch on title */
+  position: relative;
+  animation: flicker 8s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .titleText { animation: none; }
+}
+
+/* ── scrollable body ───────────────────────────────────────────────────────── */
+.body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px 18px 18px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(180,77,255,0.3) transparent;
+}
+
+.body::-webkit-scrollbar        { width: 4px; }
+.body::-webkit-scrollbar-track  { background: transparent; }
+.body::-webkit-scrollbar-thumb  { background: rgba(180,77,255,0.4); border-radius: 4px; }
+
+/* ── output lines ──────────────────────────────────────────────────────────── */
+.line {
+  white-space: pre-wrap;
+  word-break: break-word;
+  min-height: 1.65em;
+}
+
+.line_text    { color: var(--text); }
+.line_command {
+  color: var(--cyan);
+  text-shadow: 0 0 6px rgba(0,245,255,0.5);
+}
+.line_success {
+  color: var(--cyan);
+  text-shadow: 0 0 4px rgba(0,245,255,0.4);
+}
+.line_error   {
+  color: var(--red);
+  text-shadow: 0 0 4px rgba(255,56,96,0.5);
+}
+.line_info    {
+  color: var(--purple);
+  text-shadow: 0 0 4px rgba(180,77,255,0.4);
+}
+.line_system  { color: var(--dim); }
+
+/* ── input row ─────────────────────────────────────────────────────────────── */
+.inputRow {
+  display: flex;
+  align-items: center;
+  margin-top: 2px;
+}
+
+.prompt {
+  color: var(--magenta);
+  text-shadow: 0 0 8px rgba(255,45,120,0.7);
+  white-space: nowrap;
+  margin-right: 8px;
+  user-select: none;
+  flex-shrink: 0;
+  animation: flicker 10s 3s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prompt { animation: none; }
+}
+
+.input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--cyan);
+  text-shadow: 0 0 6px rgba(0,245,255,0.5);
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  flex: 1;
+  min-width: 0;
+  caret-color: var(--cyan);
+  padding: 0;
+  margin: 0;
+}
+
+.input::selection {
+  background: rgba(0,245,255,0.25);
+  color: var(--text);
+}
+
+/* ── autocomplete suggestions ──────────────────────────────────────────────── */
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 4px 0;
+  margin-left: 2px;
+}
+
+.suggestion {
+  color: var(--purple);
+  text-shadow: 0 0 4px rgba(180,77,255,0.4);
+}
+
+.suggestionActive {
+  color: var(--cyan);
+  text-shadow: 0 0 6px rgba(0,245,255,0.6);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ── HTML output tokens (used in isHtml lines from commands.ts) ────────────── */
+
+:global(.t-name) {
+  color: var(--cp-cyan);
+  font-weight: bold;
+  text-shadow: 0 0 6px rgba(0,245,255,0.5);
+}
+
+:global(.t-desc) {
+  color: var(--cp-dim);
+}
+
+:global(.t-key) {
+  color: var(--cp-purple);
+  text-shadow: 0 0 4px rgba(180,77,255,0.3);
+}
+
+:global(.t-bullet) {
+  color: var(--cp-magenta);
+  text-shadow: 0 0 4px rgba(255,45,120,0.4);
+}
+
+:global(.t-num) {
+  color: var(--cp-amber);
+  font-weight: bold;
+  text-shadow: 0 0 4px rgba(255,184,48,0.4);
+}
+
+:global(.t-ptitle) {
+  color: var(--cp-cyan);
+  font-weight: bold;
+  text-shadow: 0 0 6px rgba(0,245,255,0.4);
+}
+
+:global(.t-open) {
+  color: var(--cp-green);
+  text-shadow: 0 0 4px rgba(57,255,20,0.4);
+}
+
+:global(.t-dim) {
+  color: var(--cp-dim);
+  font-style: italic;
+}
+
+:global(.t-tag) {
+  display: inline-block;
+  background: rgba(0, 245, 255, 0.06);
+  color: var(--cp-cyan);
+  border: 1px solid rgba(0, 245, 255, 0.25);
+  border-radius: 3px;
+  padding: 0 5px;
+  font-size: 0.88em;
+  line-height: 1.5;
+}
+
+:global(.t-tag.t-learn) {
+  border-color: rgba(255, 184, 48, 0.35);
+  color: var(--cp-amber);
+}
+
+:global(.t-link) {
+  color: var(--cp-cyan);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-shadow: 0 0 4px rgba(0,245,255,0.3);
+  transition: color 0.15s, text-shadow 0.15s;
+}
+
+:global(.t-link:hover) {
+  color: var(--cp-magenta);
+  text-shadow: 0 0 8px rgba(255,45,120,0.6);
+}
+
+/* ── responsive ────────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .terminalInner {
+    margin: 8px;
+    max-height: calc(100vh - 16px);
+    border-radius: 6px;
+  }
+  .body {
+    padding: 10px 12px 14px;
+  }
+}

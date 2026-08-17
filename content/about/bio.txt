@@ -1,0 +1,21 @@
+Name: Dylan Hawkins
+Title: Computer Science & Games Technology Student
+Location: Perth, Western Australia
+Status: Open to opportunities
+
+Accomplished Computer Science and Games Technology student, seeking to join
+an industry-leading software architecture team. I'm passionate about
+developing systems that have a net positive impact on the world and the
+people in it — it's my personal mission to leave the world better than I
+found it, and I want to join a company that shares that mission.
+
+Leadership & Ethics
+I'm a strong advocate for the ACS Code of Ethics. As team lead on the
+CaRER Tech project (a cognition-based app for dementia patients), I
+prioritised public interest and privacy by implementing secure data
+structures and backend environments (Docker, Supabase, Row Level Security).
+
+Under Academic Chair/Unit Coordinator Shri Rai, I served as PASS Leader for
+Data Structures and Abstractions, and Student Mentor for the same unit plus
+Foundations of Programming — teaching new concepts directly to students
+using both depth of knowledge and a love for teaching.
