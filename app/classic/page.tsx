@@ -8,6 +8,7 @@ import {
 } from "@/app/lib/content";
 import { PROJECTS } from "@/app/lib/commands";
 import { renderBlocks, renderExperience, splitHeader } from "./textBlocks";
+import ClassicNav from "./ClassicNav";
 import styles from "./classic.module.css";
 
 export const metadata: Metadata = {
@@ -35,8 +36,8 @@ export default function ClassicPage() {
   const resume = readContentFile("resume/resume.txt");
 
   return (
-    <div className={styles.page}>
-      <header className={styles.hero}>
+    <div className={styles.page} data-classic-scroll>
+      <header className={styles.hero} data-classic-hero>
         <div className={styles.heroInner}>
           <div>
             <h1 className={styles.name}>{bio.header.Name}</h1>
@@ -55,13 +56,7 @@ export default function ClassicPage() {
             ⌘ Open interactive site
           </Link>
         </div>
-        <nav className={styles.nav} aria-label="Section navigation">
-          {NAV.map((n) => (
-            <a key={n.href} href={n.href}>
-              {n.label}
-            </a>
-          ))}
-        </nav>
+        <ClassicNav items={NAV} className={styles.nav} />
       </header>
 
       <main className={styles.content}>

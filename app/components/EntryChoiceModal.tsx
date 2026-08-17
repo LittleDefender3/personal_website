@@ -48,6 +48,10 @@ export default function EntryChoiceModal() {
         <p className={styles.subheading}>
           Pick whichever fits — you can switch anytime from the dock.
         </p>
+        <p className={styles.notice}>
+          This site is still under active development - I&apos;m hoping to
+          have it finished up after my internship wraps at the end of August.
+        </p>
         <div className={styles.options}>
           <Link href="/classic" className={styles.option} onClick={dismiss}>
             <span className={styles.optionIcon}>⌘</span>

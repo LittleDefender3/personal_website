@@ -106,6 +106,15 @@
 .section {
   padding: 36px 0;
   border-bottom: 1px solid rgba(180, 77, 255, 0.12);
+  /* keeps direct #hash links / back-forward navigation clear of the sticky
+     header; in-page nav clicks compute the exact offset in ClassicNav.tsx */
+  scroll-margin-top: 170px;
+}
+
+@media (max-width: 640px) {
+  .section {
+    scroll-margin-top: 230px;
+  }
 }
 
 .section:last-child {

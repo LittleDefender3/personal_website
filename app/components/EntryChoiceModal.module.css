@@ -63,6 +63,17 @@
   margin-bottom: 24px;
 }
 
+.notice {
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--cp-amber);
+  background: rgba(255, 184, 48, 0.08);
+  border: 1px solid rgba(255, 184, 48, 0.25);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: -12px 0 20px;
+}
+
 .options {
   display: grid;
   grid-template-columns: 1fr 1fr;
