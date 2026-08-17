@@ -406,12 +406,15 @@ const projectsCmd: Command = {
     // Show specific project ──────────────────────────────────────────────
     if (args.length > 0) {
       const query = args.join(" ").toLowerCase();
-      const project = PROJECTS.find(
-        (p) =>
-          p.id === query ||
-          p.id.includes(query) ||
-          p.title.toLowerCase().includes(query)
-      );
+      const index = Number(query);
+      const project = Number.isInteger(index)
+        ? PROJECTS[index - 1]
+        : PROJECTS.find(
+            (p) =>
+              p.id === query ||
+              p.id.includes(query) ||
+              p.title.toLowerCase().includes(query)
+          );
 
       if (!project) {
         return ok([
