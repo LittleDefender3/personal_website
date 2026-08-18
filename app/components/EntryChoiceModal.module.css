@@ -38,7 +38,7 @@
   background: transparent;
   border: none;
   color: var(--cp-dim);
-  font-size: 14px;
+  font-size: 16px;
   cursor: pointer;
   padding: 4px 8px;
   transition: color 0.15s;
@@ -49,22 +49,22 @@
 }
 
 .heading {
-  font-size: 18px;
+  font-size: 21px;
   font-weight: 700;
-  color: var(--cp-text);
-  text-shadow: var(--cp-glow-mag);
+  color: #fff;
+  text-shadow: 0 0 4px rgba(255, 45, 120, 0.55);
   margin-bottom: 8px;
   padding-right: 24px;
 }
 
 .subheading {
-  font-size: 12px;
-  color: var(--cp-dim);
+  font-size: 15px;
+  color: #a89bc9;
   margin-bottom: 24px;
 }
 
 .notice {
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1.5;
   color: var(--cp-amber);
   background: rgba(255, 184, 48, 0.08);
@@ -111,16 +111,16 @@
 }
 
 .optionTitle {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.03em;
   color: var(--cp-text);
 }
 
 .optionDesc {
-  font-size: 11px;
+  font-size: 14px;
   line-height: 1.5;
-  color: var(--cp-dim);
+  color: #a89bc9;
 }
 
 @media (max-width: 480px) {
