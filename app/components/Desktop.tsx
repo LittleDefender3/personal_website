@@ -1,6 +1,5 @@
 "use client";
 
-import { WindowManagerProvider } from "./WindowManager";
 import AppWindow from "./AppWindow";
 import Taskbar from "./Taskbar";
 import Terminal from "./Terminal";
@@ -18,27 +17,25 @@ interface DesktopProps {
 
 export default function Desktop({ files, repoUrl }: DesktopProps) {
   return (
-    <WindowManagerProvider>
-      <div className={styles.desktop}>
-        {/* Floating windows */}
-        <AppWindow id="terminal">
-          <Terminal />
-        </AppWindow>
-        <AppWindow id="browser">
-          <BrowserApp />
-        </AppWindow>
-        <AppWindow id="files">
-          <FileExplorerApp files={files} repoUrl={repoUrl} />
-        </AppWindow>
-        <AppWindow id="photos">
-          <PhotosApp />
-        </AppWindow>
+    <div className={styles.desktop}>
+      {/* Floating windows */}
+      <AppWindow id="terminal">
+        <Terminal />
+      </AppWindow>
+      <AppWindow id="browser">
+        <BrowserApp />
+      </AppWindow>
+      <AppWindow id="files">
+        <FileExplorerApp files={files} repoUrl={repoUrl} />
+      </AppWindow>
+      <AppWindow id="photos">
+        <PhotosApp />
+      </AppWindow>
 
-        {/* Dock */}
-        <Taskbar />
+      {/* Dock */}
+      <Taskbar />
 
-        <EntryChoiceModal />
-      </div>
-    </WindowManagerProvider>
+      <EntryChoiceModal />
+    </div>
   );
 }

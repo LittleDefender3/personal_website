@@ -2,8 +2,9 @@
 
 import { Suspense, useEffect, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import { useGLTF, Center, Bounds, OrbitControls } from "@react-three/drei";
+import { useGLTF, Center, Bounds, OrbitControls, Html } from "@react-three/drei";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
+import { useWindowManager, type AppId } from "./WindowManager";
 
 const MODEL_URL = "/models/medieval_fantasy_book/scene.gltf";
 
@@ -62,6 +63,82 @@ function DriftingOrbitControls() {
   );
 }
 
+// ── Clickable map markers ──────────────────────────────────────────────────
+//
+// Positions are landmark nodes' world coordinates *within the loaded GLTF's
+// own local frame* (found by traversing scene.getObjectByName(...) and
+// calling getWorldPosition() before mounting). Since Model and Markers are
+// siblings inside the same <Center> group with no transform of their own,
+// that local frame is exactly what a marker's `position` prop should use —
+// they end up sitting on the real landmark regardless of how Center/Bounds
+// re-centers or scales the view.
+
+interface MarkerDef {
+  position: [number, number, number];
+  label: string;
+  icon: string;
+  app: AppId;
+}
+
+const MARKERS: MarkerDef[] = [
+  { position: [-6.72, 12.5, -7.03], label: "About", icon: "◈", app: "browser" },
+  { position: [-35.78, 3.89, 27.19], label: "Files", icon: "⌗", app: "files" },
+  { position: [3.71, -0.44, 15.4], label: "Photos", icon: "⬡", app: "photos" },
+  { position: [-18.33, -0.05, 14.6], label: "Terminal", icon: ">_", app: "terminal" },
+];
+
+function Marker({ position, label, icon, onSelect }: MarkerDef & { onSelect: () => void }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <Html position={position} center zIndexRange={[10, 0]}>
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          onSelect();
+        }}
+        onPointerDown={(e) => e.stopPropagation()}
+        onPointerEnter={() => setHovered(true)}
+        onPointerLeave={() => setHovered(false)}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 6,
+          padding: "4px 10px 4px 6px",
+          borderRadius: 999,
+          border: "1px solid rgba(77, 141, 255, 0.6)",
+          background: hovered ? "rgba(77, 141, 255, 0.92)" : "rgba(10, 15, 30, 0.72)",
+          color: hovered ? "#08111f" : "#dfeeff",
+          fontFamily: "'Courier New', Courier, monospace",
+          fontSize: "11px",
+          letterSpacing: "0.03em",
+          cursor: "pointer",
+          boxShadow: hovered
+            ? "0 0 14px rgba(77, 141, 255, 0.65)"
+            : "0 2px 8px rgba(0, 0, 0, 0.35)",
+          transform: hovered ? "scale(1.08)" : "scale(1)",
+          transition: "background 0.15s, color 0.15s, box-shadow 0.15s, transform 0.15s",
+          whiteSpace: "nowrap",
+        }}
+      >
+        <span style={{ fontSize: "13px" }}>{icon}</span>
+        {label}
+      </button>
+    </Html>
+  );
+}
+
+function Markers() {
+  const { openWindow } = useWindowManager();
+  return (
+    <>
+      {MARKERS.map((m) => (
+        <Marker key={m.app} {...m} onSelect={() => openWindow(m.app)} />
+      ))}
+    </>
+  );
+}
+
 function Scene() {
   return (
     <>
@@ -75,6 +152,7 @@ function Scene() {
         <Bounds fit clip margin={1.4}>
           <Center>
             <Model />
+            <Markers />
           </Center>
         </Bounds>
       </Suspense>
