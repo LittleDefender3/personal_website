@@ -15,11 +15,11 @@
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  border-right: 1px solid rgba(180, 77, 255, 0.25);
+  border-right: 1px solid rgba(77, 141, 255, 0.25);
   background: rgba(7, 5, 15, 0.5);
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: rgba(180, 77, 255, 0.3) transparent;
+  scrollbar-color: rgba(77, 141, 255, 0.3) transparent;
 }
 
 .sidebarHeader {
@@ -29,7 +29,7 @@
   text-transform: uppercase;
   color: var(--cp-purple);
   background: rgba(14, 11, 26, 0.8);
-  border-bottom: 1px solid rgba(180, 77, 255, 0.2);
+  border-bottom: 1px solid rgba(77, 141, 255, 0.2);
 }
 
 /* ── Tree ──────────────────────────────────────────────────────────────────── */
@@ -46,7 +46,7 @@
   letter-spacing: 0.03em;
   color: var(--cp-dim);
   text-decoration: none;
-  border-top: 1px solid rgba(180, 77, 255, 0.2);
+  border-top: 1px solid rgba(77, 141, 255, 0.2);
   background: rgba(14, 11, 26, 0.8);
   transition: color 0.15s;
 }
@@ -80,7 +80,7 @@
 }
 
 .treeItem:hover {
-  background: rgba(180, 77, 255, 0.1);
+  background: rgba(77, 141, 255, 0.1);
   color: var(--cp-purple);
 }
 
@@ -159,7 +159,7 @@
   white-space: pre-wrap;
   word-break: break-word;
   scrollbar-width: thin;
-  scrollbar-color: rgba(180, 77, 255, 0.3) transparent;
+  scrollbar-color: rgba(77, 141, 255, 0.3) transparent;
 }
 
 .previewEmpty {
