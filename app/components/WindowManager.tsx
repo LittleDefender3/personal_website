@@ -44,7 +44,7 @@ const DEFAULT_WINDOWS: WindowState[] = [
     id: "terminal",
     title: "Terminal",
     icon: ">_",
-    isOpen: true,
+    isOpen: false,
     isMinimized: false,
     zIndex: 10,
     x: -1, // sentinel: center on mount
