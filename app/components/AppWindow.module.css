@@ -1,3 +1,13 @@
+/* ── Popup positioning ───────────────────────────────────────────────────── */
+.popupWrap {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
 /* ── Window shell ────────────────────────────────────────────────────────── */
 .window {
   display: flex;
@@ -9,6 +19,7 @@
   overflow: hidden;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  pointer-events: auto;
 }
 
 /* ── Title bar ───────────────────────────────────────────────────────────── */
@@ -21,13 +32,8 @@
   min-height: 36px;
   background: rgba(14, 11, 26, 0.95);
   border-bottom: 1px solid rgba(77, 141, 255, 0.35);
-  cursor: grab;
   user-select: none;
   flex-shrink: 0;
-}
-
-.titleBar:active {
-  cursor: grabbing;
 }
 
 .titleIcon {

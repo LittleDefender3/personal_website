@@ -18,8 +18,6 @@ export interface WindowState {
   isOpen: boolean;
   isMinimized: boolean;
   zIndex: number;
-  x: number;
-  y: number;
   width: number;
   height: number;
 }
@@ -30,9 +28,6 @@ interface WindowManagerContextValue {
   closeWindow: (id: AppId) => void;
   minimizeWindow: (id: AppId) => void;
   focusWindow: (id: AppId) => void;
-  updatePosition: (id: AppId, x: number, y: number) => void;
-  updateSize: (id: AppId, width: number, height: number) => void;
-  updatePositionAndSize: (id: AppId, x: number, y: number, width: number, height: number) => void;
 }
 
 const WindowManagerContext = createContext<WindowManagerContextValue | null>(
@@ -47,8 +42,6 @@ const DEFAULT_WINDOWS: WindowState[] = [
     isOpen: false,
     isMinimized: false,
     zIndex: 10,
-    x: -1, // sentinel: center on mount
-    y: -1,
     width: 720,
     height: 500,
   },
@@ -59,8 +52,6 @@ const DEFAULT_WINDOWS: WindowState[] = [
     isOpen: false,
     isMinimized: false,
     zIndex: 10,
-    x: 80,
-    y: 60,
     width: 760,
     height: 540,
   },
@@ -71,8 +62,6 @@ const DEFAULT_WINDOWS: WindowState[] = [
     isOpen: false,
     isMinimized: false,
     zIndex: 10,
-    x: 120,
-    y: 80,
     width: 680,
     height: 480,
   },
@@ -83,8 +72,6 @@ const DEFAULT_WINDOWS: WindowState[] = [
     isOpen: false,
     isMinimized: false,
     zIndex: 10,
-    x: 160,
-    y: 100,
     width: 700,
     height: 520,
   },
@@ -131,30 +118,6 @@ export function WindowManagerProvider({ children }: { children: ReactNode }) {
     );
   }, []);
 
-  const updatePosition = useCallback((id: AppId, x: number, y: number) => {
-    setWindows((prev) =>
-      prev.map((w) => (w.id === id ? { ...w, x, y } : w))
-    );
-  }, []);
-
-  const updateSize = useCallback(
-    (id: AppId, width: number, height: number) => {
-      setWindows((prev) =>
-        prev.map((w) => (w.id === id ? { ...w, width, height } : w))
-      );
-    },
-    []
-  );
-
-  const updatePositionAndSize = useCallback(
-    (id: AppId, x: number, y: number, width: number, height: number) => {
-      setWindows((prev) =>
-        prev.map((w) => (w.id === id ? { ...w, x, y, width, height } : w))
-      );
-    },
-    []
-  );
-
   return (
     <WindowManagerContext.Provider
       value={{
@@ -163,9 +126,6 @@ export function WindowManagerProvider({ children }: { children: ReactNode }) {
         closeWindow,
         minimizeWindow,
         focusWindow,
-        updatePosition,
-        updateSize,
-        updatePositionAndSize,
       }}
     >
       {children}
