@@ -2,15 +2,30 @@
 
 import { Suspense, useEffect, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import { useGLTF, Center, Bounds, OrbitControls, Html } from "@react-three/drei";
+import { useGLTF, useAnimations, Center, Bounds, OrbitControls, Html } from "@react-three/drei";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
+import type * as THREE from "three";
 import { useWindowManager, type AppId } from "./WindowManager";
 
 const MODEL_URL = "/models/medieval_fantasy_book/scene.gltf";
 
+// The model ships one clip ("The Life") that spins the windmill's wind and
+// water wheels and waves both flags — useGLTF only loads the clips, playing
+// them still needs an AnimationMixer, which useAnimations sets up for us.
 function Model() {
-  const { scene } = useGLTF(MODEL_URL);
-  return <primitive object={scene} />;
+  const groupRef = useRef<THREE.Group>(null);
+  const { scene, animations } = useGLTF(MODEL_URL);
+  const { actions } = useAnimations(animations, groupRef);
+
+  useEffect(() => {
+    Object.values(actions).forEach((action) => action?.play());
+  }, [actions]);
+
+  return (
+    <group ref={groupRef}>
+      <primitive object={scene} />
+    </group>
+  );
 }
 
 useGLTF.preload(MODEL_URL);
