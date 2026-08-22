@@ -2,11 +2,11 @@
 
 import dynamic from "next/dynamic";
 
-const CyberpunkBackground = dynamic(
-  () => import("./CyberpunkBackground"),
+const ModelBackground = dynamic(
+  () => import("./ModelBackground"),
   { ssr: false }
 );
 
 export default function BackgroundWrapper() {
-  return <CyberpunkBackground />;
+  return <ModelBackground />;
 }
