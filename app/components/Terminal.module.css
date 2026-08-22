@@ -142,22 +142,10 @@
 }
 
 .line_text    { color: var(--text); }
-.line_command {
-  color: var(--cyan);
-  text-shadow: 0 0 6px rgba(0,245,255,0.5);
-}
-.line_success {
-  color: var(--cyan);
-  text-shadow: 0 0 4px rgba(0,245,255,0.4);
-}
-.line_error   {
-  color: var(--red);
-  text-shadow: 0 0 4px rgba(255,56,96,0.5);
-}
-.line_info    {
-  color: var(--purple);
-  text-shadow: 0 0 4px rgba(180,77,255,0.4);
-}
+.line_command { color: var(--cyan); }
+.line_success { color: var(--cyan); }
+.line_error   { color: var(--red); }
+.line_info    { color: var(--purple); }
 .line_system  { color: var(--dim); }
 
 /* ── input row ─────────────────────────────────────────────────────────────── */
@@ -169,7 +157,6 @@
 
 .prompt {
   color: var(--magenta);
-  text-shadow: 0 0 8px rgba(255,45,120,0.7);
   white-space: nowrap;
   margin-right: 8px;
   user-select: none;
@@ -186,7 +173,6 @@
   border: none;
   outline: none;
   color: var(--cyan);
-  text-shadow: 0 0 6px rgba(0,245,255,0.5);
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
@@ -213,12 +199,10 @@
 
 .suggestion {
   color: var(--purple);
-  text-shadow: 0 0 4px rgba(180,77,255,0.4);
 }
 
 .suggestionActive {
   color: var(--cyan);
-  text-shadow: 0 0 6px rgba(0,245,255,0.6);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
@@ -228,7 +212,6 @@
 :global(.t-name) {
   color: var(--cp-cyan);
   font-weight: bold;
-  text-shadow: 0 0 6px rgba(0,245,255,0.5);
 }
 
 :global(.t-desc) {
@@ -237,29 +220,24 @@
 
 :global(.t-key) {
   color: var(--cp-purple);
-  text-shadow: 0 0 4px rgba(180,77,255,0.3);
 }
 
 :global(.t-bullet) {
   color: var(--cp-magenta);
-  text-shadow: 0 0 4px rgba(255,45,120,0.4);
 }
 
 :global(.t-num) {
   color: var(--cp-amber);
   font-weight: bold;
-  text-shadow: 0 0 4px rgba(255,184,48,0.4);
 }
 
 :global(.t-ptitle) {
   color: var(--cp-cyan);
   font-weight: bold;
-  text-shadow: 0 0 6px rgba(0,245,255,0.4);
 }
 
 :global(.t-open) {
   color: var(--cp-green);
-  text-shadow: 0 0 4px rgba(57,255,20,0.4);
 }
 
 :global(.t-dim) {
@@ -287,13 +265,11 @@
   color: var(--cp-cyan);
   text-decoration: underline;
   text-underline-offset: 2px;
-  text-shadow: 0 0 4px rgba(0,245,255,0.3);
-  transition: color 0.15s, text-shadow 0.15s;
+  transition: color 0.15s;
 }
 
 :global(.t-link:hover) {
   color: var(--cp-magenta);
-  text-shadow: 0 0 8px rgba(255,45,120,0.6);
 }
 
 /* ── responsive ────────────────────────────────────────────────────────────── */

@@ -62,7 +62,6 @@
 .h1 {
   font-size: 28px;
   color: var(--cp-cyan);
-  text-shadow: 0 0 12px rgba(0, 245, 255, 0.5);
   margin-bottom: 4px;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -71,7 +70,6 @@
 .h2 {
   font-size: 18px;
   color: var(--cp-purple);
-  text-shadow: 0 0 8px rgba(180, 77, 255, 0.5);
   margin-bottom: 16px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -82,7 +80,6 @@
 .subtitle {
   font-size: 14px;
   color: var(--cp-magenta);
-  text-shadow: 0 0 6px rgba(255, 45, 120, 0.4);
   margin-bottom: 6px;
 }
 
@@ -193,7 +190,6 @@
 
 .link:hover {
   color: var(--cp-cyan);
-  text-shadow: 0 0 6px var(--cp-cyan);
 }
 
 /* ── Contact ──────────────────────────────────────────────────────────────── */

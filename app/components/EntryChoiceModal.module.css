@@ -26,7 +26,7 @@
   background: rgba(14, 11, 26, 0.95);
   border: 1px solid rgba(180, 77, 255, 0.4);
   border-radius: 14px;
-  box-shadow: 0 0 32px rgba(180, 77, 255, 0.2), 0 0 0 1px rgba(0, 245, 255, 0.05);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
   font-family: "Courier New", Courier, monospace;
   color: var(--cp-text);
 }
@@ -107,7 +107,6 @@
 .optionIcon {
   font-size: 20px;
   color: var(--cp-cyan);
-  text-shadow: 0 0 6px currentColor;
 }
 
 .optionTitle {
