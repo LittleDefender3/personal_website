@@ -85,6 +85,7 @@ const MARKERS: MarkerDef[] = [
   { position: [-35.78, 3.89, 27.19], label: "Files", icon: "⌗", app: "files" },
   { position: [3.71, -0.44, 15.4], label: "Photos", icon: "⬡", app: "photos" },
   { position: [-18.33, -0.05, 14.6], label: "Terminal", icon: ">_", app: "terminal" },
+  { position: [-6.7, 12.55, -26.52], label: "Credits", icon: "©", app: "credits" },
 ];
 
 function Marker({ position, label, icon, onSelect }: MarkerDef & { onSelect: () => void }) {
@@ -163,6 +164,7 @@ function Scene() {
 // ── Main exported component ───────────────────────────────────────────────────
 
 export default function ModelBackground() {
+  const { openWindow } = useWindowManager();
   const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
@@ -175,7 +177,6 @@ export default function ModelBackground() {
 
   return (
     <div
-      aria-hidden="true"
       style={{
         position: "fixed",
         inset: 0,
@@ -193,7 +194,8 @@ export default function ModelBackground() {
           <Scene />
         </Canvas>
       )}
-      <div
+      <button
+        onClick={() => openWindow("credits")}
         style={{
           position: "absolute",
           bottom: 6,
@@ -202,11 +204,14 @@ export default function ModelBackground() {
           fontFamily: "monospace",
           letterSpacing: "0.02em",
           color: "rgba(20, 35, 55, 0.45)",
-          pointerEvents: "none",
+          background: "transparent",
+          border: "none",
+          padding: 0,
+          cursor: "pointer",
         }}
       >
-        &quot;Medieval Fantasy Book&quot; by Pixel, CC BY 4.0
-      </div>
+        &quot;Medieval Fantasy Book&quot; by Pixel, CC BY 4.0 · Credits
+      </button>
     </div>
   );
 }

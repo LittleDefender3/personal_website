@@ -6,6 +6,7 @@ import Terminal from "./Terminal";
 import BrowserApp from "./apps/BrowserApp";
 import FileExplorerApp from "./apps/FileExplorerApp";
 import PhotosApp from "./apps/PhotosApp";
+import CreditsApp from "./apps/CreditsApp";
 import EntryChoiceModal from "./EntryChoiceModal";
 import type { FileNode } from "@/app/lib/types";
 import styles from "./Desktop.module.css";
@@ -30,6 +31,9 @@ export default function Desktop({ files, repoUrl }: DesktopProps) {
       </AppWindow>
       <AppWindow id="photos">
         <PhotosApp />
+      </AppWindow>
+      <AppWindow id="credits">
+        <CreditsApp />
       </AppWindow>
 
       {/* Dock */}

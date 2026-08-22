@@ -9,6 +9,7 @@ const APPS: { id: AppId; icon: string; label: string }[] = [
   { id: "browser",  icon: "◈",  label: "Browser"  },
   { id: "files",    icon: "⌗",  label: "Files"    },
   { id: "photos",   icon: "⬡",  label: "Photos"   },
+  { id: "credits",  icon: "©",  label: "Credits"  },
 ];
 
 export default function Taskbar() {

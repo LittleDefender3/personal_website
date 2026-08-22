@@ -9,7 +9,7 @@ import {
   type ReactNode,
 } from "react";
 
-export type AppId = "terminal" | "browser" | "files" | "photos";
+export type AppId = "terminal" | "browser" | "files" | "photos" | "credits";
 
 export interface WindowState {
   id: AppId;
@@ -61,6 +61,14 @@ const DEFAULT_WINDOWS: WindowState[] = [
     id: "photos",
     title: "Photos",
     icon: "⬡",
+    isOpen: false,
+    isMinimized: false,
+    zIndex: 10,
+  },
+  {
+    id: "credits",
+    title: "Credits",
+    icon: "©",
     isOpen: false,
     isMinimized: false,
     zIndex: 10,
