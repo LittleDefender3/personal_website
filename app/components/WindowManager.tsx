@@ -18,8 +18,6 @@ export interface WindowState {
   isOpen: boolean;
   isMinimized: boolean;
   zIndex: number;
-  width: number;
-  height: number;
 }
 
 interface WindowManagerContextValue {
@@ -42,8 +40,6 @@ const DEFAULT_WINDOWS: WindowState[] = [
     isOpen: false,
     isMinimized: false,
     zIndex: 10,
-    width: 720,
-    height: 500,
   },
   {
     id: "browser",
@@ -52,8 +48,6 @@ const DEFAULT_WINDOWS: WindowState[] = [
     isOpen: false,
     isMinimized: false,
     zIndex: 10,
-    width: 760,
-    height: 540,
   },
   {
     id: "files",
@@ -62,8 +56,6 @@ const DEFAULT_WINDOWS: WindowState[] = [
     isOpen: false,
     isMinimized: false,
     zIndex: 10,
-    width: 680,
-    height: 480,
   },
   {
     id: "photos",
@@ -72,8 +64,6 @@ const DEFAULT_WINDOWS: WindowState[] = [
     isOpen: false,
     isMinimized: false,
     zIndex: 10,
-    width: 700,
-    height: 520,
   },
 ];
 

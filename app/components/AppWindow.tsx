@@ -75,10 +75,7 @@ export default function AppWindow({ id, children }: AppWindowProps) {
       style={{ zIndex: win.zIndex }}
       onMouseDown={() => focusWindow(id)}
     >
-      <div
-        className={styles.window}
-        style={{ width: win.width, height: win.height }}
-      >
+      <div className={styles.window}>
         <TitleBar id={id} win={win} onMinimize={minimizeWindow} onClose={closeWindow} />
         <div className={styles.content}>{children}</div>
       </div>
