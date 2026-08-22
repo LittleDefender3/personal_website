@@ -34,7 +34,7 @@ function SpinningModel() {
 function Scene() {
   return (
     <>
-      <hemisphereLight intensity={0.9} color="#fff2d8" groundColor="#1a0535" />
+      <hemisphereLight intensity={0.9} color="#bfe4ff" groundColor="#4a3a2a" />
       <ambientLight intensity={0.4} />
       <directionalLight position={[5, 8, 5]} intensity={1.6} color="#ffe3b0" />
       <directionalLight position={[-6, -3, -4]} intensity={0.6} color="#5d6dff" />
@@ -68,7 +68,7 @@ export default function ModelBackground() {
         inset: 0,
         zIndex: 0,
         pointerEvents: "none",
-        background: "radial-gradient(ellipse at 50% 60%, #1a0535 0%, #07050f 65%)",
+        background: "radial-gradient(ellipse at 50% 30%, #bfe4ff 0%, #6fb3ee 45%, #2f6fc4 100%)",
       }}
     >
       {!reducedMotion && (
@@ -89,7 +89,7 @@ export default function ModelBackground() {
           fontSize: "10px",
           fontFamily: "monospace",
           letterSpacing: "0.02em",
-          color: "rgba(224, 216, 240, 0.35)",
+          color: "rgba(20, 35, 55, 0.45)",
         }}
       >
         &quot;Medieval Fantasy Book&quot; by Pixel, CC BY 4.0
